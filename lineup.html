@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .event_style{
+
+        }
+    </style>
+</head>
+<body>
+    <div id="local_calendar">
+        <!-- drawnCallendar() -->
+    </div>
+</body>
+<script>
+    
+    let event_calendar;
+
+    document.addEventListener('drag', function(event) {
+        
+    })
+
+    document.addEventListener('dragstart', e => {
+        console.log("arrastei");
+        event_calendar = e.target
+    })
+
+    document.addEventListener("dragover", e => {
+        e.preventDefault();
+    }, false);
+
+    document.addEventListener("drop", function(event) {
+        event.preventDefault();
+        left_drop = event.target.getBoundingClientRect().left
+        
+        event_calendar.style.left = `${left_drop}px`
+
+        events_only = document.getElementsByClassName('event_style')
+        for (i in events_only){
+            console.log(events_only[i]);
+        }
+        
+    })
+    function createGridDay(day) {
+        let grid_day = document.createElement('div')
+        
+        grid_day.style.width = `calc(${100/31}% - ${1}px)`
+        grid_day.style.height = "100%"
+        grid_day.style.borderLeft = "0.5px solid gray"
+        grid_day.style.borderBottom = "0.5px solid gray"
+        //grid_day.
+        grid_day.style.textAlign = "center"
+        grid_day.style.backgroundColor = "white"
+        grid_day.style.float = "left"
+            //grid_day.style.display = "inline-block"
+        let title_day = document.createElement('div')
+        title_day.innerText = day
+        title_day.style.height = "20px"
+        title_day.style.borderTop = "0.5px solid gray"
+        title_day.style.borderBottom = "0.5px solid gray"
+        
+        grid_day.appendChild(title_day)
+        let element = grid_day
+        return element
+    }
+
+    function createEvent(params) {
+        event_callendar = document.createElement('div')
+        event_callendar.style.width = '100px'
+        event_callendar.style.height = '20px'
+        event_callendar.style.backgroundColor = 'red'
+        event_callendar.style.position = 'absolute'
+        event_callendar.style.top = "30px"
+        event_callendar.draggable = true
+        event_callendar.classList.add('event_style')
+        return event_callendar
+    }
+
+    function drawnCallendar(params) {
+        let interval_days = 31
+        let callendar_body = document.createElement('div')
+        //! css for callendar body
+        callendar_body.style.width = "100%"
+        callendar_body.style.height = "200px"
+        callendar_body.style.backgroundColor = "gray"
+        for (let day = 1; day < interval_days+1; day++){
+            //console.log(day);
+            grid_day = createGridDay(day)
+            
+            event_callendar = createEvent()
+            callendar_body.appendChild(grid_day)
+            
+        }
+        callendar_body.appendChild(event_callendar)
+        document.getElementById('local_calendar').appendChild(callendar_body)
+    }
+    drawnCallendar()
+    //console.log(document.styleSheets);
+</script>
+</html>
