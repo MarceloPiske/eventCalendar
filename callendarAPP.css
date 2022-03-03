@@ -1,0 +1,28 @@
+.callendaAPP-PiskeEvent{
+    top: 30px;
+    height: 1.5rem;
+    position: absolute;
+    top: 1.5rem;
+
+}
+.callendarAPP-PiskeGridDay{
+    background-color: white;
+    text-align: center;
+    border-bottom: .5px solid gray;
+    border-left: .5px solid gray;
+    height: 100%;
+    width: 20em;
+}
+.callendarAPP-PiskeGridDay:last-child{
+    border-right: .5px solid gray;
+}
+
+.callendarAPP-PiskeTitleDay{
+    /* text-align: center;
+    display: flex; */
+    padding: auto;
+    align-items: center;
+    height: 1.5rem;
+    border-bottom: .5px solid gray;
+    border-top: .5px solid gray;
+}
